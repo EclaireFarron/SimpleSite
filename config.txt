@@ -1,0 +1,19 @@
+server {
+  listen 80;
+  server_name 3.87.79.107;
+
+  location / {
+    # Set the appropriate content type for HTML
+    proxy_set_header Content-Type text/html;
+    
+    # Replace with the actual URL of your S3 bucket object
+    proxy_pass https://sltestbucket001.s3.amazonaws.com/test.html;
+    
+    # Improve user experience by caching the file for a day
+    proxy_cache_valid 1d;
+    proxy_cache_revalidate on;
+    proxy_cache_min_uses 1;
+    
+
+  }
+}
